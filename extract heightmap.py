@@ -23,11 +23,8 @@ esm = esmlib.openESM('Oblivion.esm')
 esm.interestingTopGroups = [b'WRLD']
 esm.load()
 
-print('extracting data')
 
-heightmap = PIL.Image.new("I", (4096,4096), 65536)
 
-tamrielGroup = esm.groups[0].contents[1]
 
 def flipRange(i):
     #converts per-cell coordinates to PIL coordinates
@@ -49,7 +46,12 @@ def cellCoordToPILCoord(x,y):
 def chunker(seq, size=33):
     return (seq[pos:pos + size] for pos in range(0, len(seq), size))
 
+
 # debugTmp = True
+heightmap = PIL.Image.new("I", (4096,4096), 65536)
+tamrielGroup = esm.groups[0].contents[1]
+
+print('extracting heightmap data...')
 
 coords = []
 cell = None
@@ -107,5 +109,5 @@ for block in tamrielGroup.subgroups:
 
 
 
-print('saving heightmap')
+print('saving heightmap...')
 heightmap.save('heightmap.png')

@@ -21,6 +21,7 @@ class ESM(object):
         self.file = file
         self.top = None
         self.groups = []
+        self.contents = None
         #everything but WRLD and CELL
         self.interestingTopGroups = [b"GMST",b"GLOB",b"CLAS",b"FACT",b"HAIR",b"EYES",b"RACE",b"SOUN",b"SKIL",b"MGEF",b"SCPT",b"LTEX",b"ENCH",b"SPEL",b"BSGN",b"ACTI",b"APPA",b"ARMO",b"BOOK",b"CLOT",b"CONT",b"DOOR",b"INGR",b"LIGH",b"MISC",b"STAT",b"GRAS",b"TREE",b"FLOR",b"FURN",b"WEAP",b"AMMO",b"NPC_",b"CREA",b"LVLC",b"SLGM",b"KEYM",b"ALCH",b"SBSP",b"SGST",b"LVLI",b"WTHR",b"CLMT",b"REGN",b"DIAL",b"QUST",b"IDLE",b"PACK",b"CSTY",b"LSCR",b"LVSP",b"ANIO",b"WATR",b"EFSH",]
 
@@ -125,6 +126,8 @@ class ESM(object):
                 continue
             
             self.groups.append(group)
+        #shitty group emulation 
+        self.contents = [self.top, *self.groups]
 
     @staticmethod
     def debug(message):
